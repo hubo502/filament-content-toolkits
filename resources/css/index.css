@@ -1,1 +1,10 @@
-@import '../../vendor/filament/filament/resources/css/theme.css';
+.x-title-desc{
+
+}
+
+.x-title-desc p{
+    font-size:.75rem;
+    white-space:pre-wrap;
+    max-width:80ch;
+    opacity:0.6;
+}
