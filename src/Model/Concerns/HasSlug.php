@@ -12,9 +12,9 @@ trait HasSlug
     public function getSlugOptions(): SlugOptions
     {
         $slugColumn = $this?->slugColumn ?: 'name';
+
         return SlugOptions::create()->generateSlugsFrom(function ($model) use ($slugColumn) {
             return method_exists($model, 'resolveSlug') ? $model->resolveSlug() : $model->$slugColumn;
         })->saveSlugsTo('slug')->preventOverwrite();
     }
-
 }

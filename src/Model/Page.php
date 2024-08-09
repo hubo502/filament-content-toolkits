@@ -19,12 +19,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-abstract class Page extends Model implements HasMedia, Seoable, Sitemapable, Searchable, Sluggable, Relatable, Taggable
+abstract class Page extends Model implements HasMedia, Relatable, Searchable, Seoable, Sitemapable, Sluggable, Taggable
 {
-    use SoftDeletes, HasSlug, HasSeo, HasSitemap, HasSearch, HasRelated, HasTags, InteractsWithMedia;
+    use HasRelated;
+    use HasSearch;
+    use HasSeo;
+    use HasSitemap;
+    use HasSlug;
+    use HasTags;
+    use InteractsWithMedia;
+    use SoftDeletes;
 
     protected $casts = ['blocks' => 'array'];
-    protected $slugColumn = "title";
+
+    protected $slugColumn = 'title';
 
     public function hasPageBlock($type): bool
     {

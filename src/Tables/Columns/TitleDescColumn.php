@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TitleDescColumn
 {
-    public static function make(?string $title = "title", ?string $desc = 'content')
+    public static function make(?string $title = 'title', ?string $desc = 'content')
     {
         return TextColumn::make($title)->description(
             function (Model $record) use ($desc): View {

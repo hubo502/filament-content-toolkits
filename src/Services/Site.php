@@ -18,7 +18,7 @@ class Site
 
     public function baseLocale(): string
     {
-        return config("auto-translate.base_locale", config('app.fallback_locale'));
+        return config('auto-translate.base_locale', config('app.fallback_locale'));
     }
 
     public function transLocales(): array

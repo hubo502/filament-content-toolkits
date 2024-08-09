@@ -12,10 +12,10 @@ use Filament\Tables\Table;
 
 class BaseResource extends Resource
 {
-
     protected static ?string $model;
 
     protected const FORM_COLUMNS = 2;
+
     protected static ?array $paginated = [10, 20, 50];
 
     protected static function schema(): array

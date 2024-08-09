@@ -20,16 +20,16 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Tags\HasSlug;
 use Spatie\Translatable\HasTranslations;
 
-class Tag extends Model implements Sortable, Seoable, HasMedia, Sitemapable
+class Tag extends Model implements HasMedia, Seoable, Sitemapable, Sortable
 {
-    use InteractsWithMedia;
-    use HasSeo;
-    use SoftDeletes;
-    use HasSitemap;
-    use SortableTrait;
-    use HasTranslations;
-    use HasSlug;
     use HasFactory;
+    use HasSeo;
+    use HasSitemap;
+    use HasSlug;
+    use HasTranslations;
+    use InteractsWithMedia;
+    use SoftDeletes;
+    use SortableTrait;
 
     public array $translatable = ['name', 'slug'];
 
@@ -40,7 +40,7 @@ class Tag extends Model implements Sortable, Seoable, HasMedia, Sitemapable
         return app()->getLocale();
     }
 
-    public function scopeWithType(Builder $query, string $type = null): Builder
+    public function scopeWithType(Builder $query, ?string $type = null): Builder
     {
         if (is_null($type)) {
             return $query;
@@ -58,8 +58,8 @@ class Tag extends Model implements Sortable, Seoable, HasMedia, Sitemapable
 
     public static function findOrCreate(
         string | array | ArrayAccess $values,
-        string | null $type = null,
-        string | null $locale = null,
+        ?string $type = null,
+        ?string $locale = null,
     ): Collection | Tag | static {
         $tags = collect($values)->map(function ($value) use ($type, $locale) {
             if ($value instanceof self) {
@@ -77,7 +77,7 @@ class Tag extends Model implements Sortable, Seoable, HasMedia, Sitemapable
         return static::withType($type)->get();
     }
 
-    public static function findFromString(string $name, string $type = null, string $locale = null)
+    public static function findFromString(string $name, ?string $type = null, ?string $locale = null)
     {
         $locale = $locale ?? static::getCurrentLocale();
 
@@ -90,7 +90,7 @@ class Tag extends Model implements Sortable, Seoable, HasMedia, Sitemapable
             ->first();
     }
 
-    public static function findFromStringOfAnyType(string $name, string $locale = null)
+    public static function findFromStringOfAnyType(string $name, ?string $locale = null)
     {
         $locale = $locale ?? static::getCurrentLocale();
 
@@ -100,13 +100,13 @@ class Tag extends Model implements Sortable, Seoable, HasMedia, Sitemapable
             ->get();
     }
 
-    public static function findOrCreateFromString(string $name, string $type = null, string $locale = null)
+    public static function findOrCreateFromString(string $name, ?string $type = null, ?string $locale = null)
     {
         $locale = $locale ?? static::getCurrentLocale();
 
         $tag = static::findFromString($name, $type, $locale);
 
-        if (!$tag) {
+        if (! $tag) {
             $tag = static::create([
                 'name' => [$locale => $name],
                 'type' => $type,
@@ -123,7 +123,7 @@ class Tag extends Model implements Sortable, Seoable, HasMedia, Sitemapable
 
     public function setAttribute($key, $value)
     {
-        if (in_array($key, $this->translatable) && !is_array($value)) {
+        if (in_array($key, $this->translatable) && ! is_array($value)) {
             return $this->setTranslation($key, static::getCurrentLocale(), $value);
         }
 

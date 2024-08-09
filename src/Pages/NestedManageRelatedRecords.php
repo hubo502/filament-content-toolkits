@@ -24,8 +24,11 @@ class NestedManageRelatedRecords extends ManageRelatedRecords
     use Translatable;
 
     protected static string $resource;
+
     protected static string $relationship;
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static string $titleColumn = 'name';
 
     protected static function schema(): array

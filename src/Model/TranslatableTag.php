@@ -20,7 +20,7 @@ class TranslatableTag extends Tag implements AutoTranslatable
         });
     }
 
-    public static function findFromString(string $name, string $type = null, string $locale = null)
+    public static function findFromString(string $name, ?string $type = null, ?string $locale = null)
     {
         $locale = $locale ?? config('app.fallback_locale', 'en');
 
@@ -28,18 +28,18 @@ class TranslatableTag extends Tag implements AutoTranslatable
             ->where('type', $type)
             ->where(function ($query) use ($name, $locale) {
                 $query->where("name->{$locale}", $name)
-                    ->orWhere("slug", $name);
+                    ->orWhere('slug', $name);
             })
             ->first();
     }
 
-    public static function findFromStringOfAnyType(string $name, string $locale = null)
+    public static function findFromStringOfAnyType(string $name, ?string $locale = null)
     {
         $locale = $locale ?? config('app.fallback_locale');
 
         return static::query()
             ->where("name->{$locale}", $name)
-            ->orWhere("slug", $name)
+            ->orWhere('slug', $name)
             ->get();
     }
 }

@@ -43,9 +43,7 @@ class FilamentContentToolkitsServiceProvider extends PackageServiceProvider
         $package->hasConfigFile('site');
     }
 
-    public function packageRegistered(): void
-    {
-    }
+    public function packageRegistered(): void {}
 
     protected static function preparePackage(): void
     {
@@ -53,8 +51,10 @@ class FilamentContentToolkitsServiceProvider extends PackageServiceProvider
         URL::macro('localize', function ($uri, $locale = null) {
             if (str_starts_with($uri, '/')) {
                 $locale = $locale ?: App::getLocale();
+
                 return $locale === Site::baseLocale() ? $uri : "/{$locale}{$uri}";
             }
+
             return $uri;
         });
 
@@ -89,7 +89,7 @@ class FilamentContentToolkitsServiceProvider extends PackageServiceProvider
         FilamentIcon::register($this->getIcons());
 
         // Testing
-        Testable::mixin(new TestsFilamentContentToolkits());
+        Testable::mixin(new TestsFilamentContentToolkits);
     }
 
     protected function getAssetPackageName(): ?string

@@ -22,6 +22,7 @@ trait HasSitemap
     protected static function resolveSitemapFilename(): string
     {
         $basename = Str::of(get_called_class())->classBasename()->snake()->plural();
+
         return "sitemap_{$basename}.xml";
     }
 

@@ -14,5 +14,4 @@ abstract class TranslatablePage extends Page implements AutoTranslatable
     protected $casts = [
         'blocks' => 'array',
     ];
-
 }

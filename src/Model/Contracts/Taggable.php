@@ -11,8 +11,8 @@ interface Taggable
     public function scopeWithAnyTagsByLocale(
         Builder $query,
         string | array | ArrayAccess $tags,
-        string $type = null,
-        string $locale = null
+        ?string $type = null,
+        ?string $locale = null
     ): Builder;
 
     public function tags(): MorphToMany;

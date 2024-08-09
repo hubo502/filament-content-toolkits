@@ -2,16 +2,19 @@
 
 namespace Darko\FilamentContentToolkits\Pages;
 
+use Darko\FilamentContentToolkits\Pages\Traits\NestedCreateRelatedRecord\Translatable;
 use Guava\FilamentNestedResources\Concerns\NestedPage;
 use Guava\FilamentNestedResources\Pages\CreateRelatedRecord as BasePage;
-use Darko\FilamentContentToolkits\Pages\Traits\NestedCreateRelatedRecord\Translatable;
 
 class NestedCreateRelatedRecord extends BasePage
 {
-    use NestedPage, Translatable;
+    use NestedPage;
+    use Translatable;
 
     protected static bool $canCreateAnother = false;
+
     protected static string $resource;
+
     protected static string $relationship;
 
     protected function getRedirectUrl(): string

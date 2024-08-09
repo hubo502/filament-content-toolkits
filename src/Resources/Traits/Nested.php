@@ -16,7 +16,7 @@ trait Nested
 
         $ancestor = $resource::getAncestor();
 
-        if (!$ancestor) {
+        if (! $ancestor) {
             return null;
         }
 
@@ -36,7 +36,7 @@ trait Nested
         $resource = static::class;
         $indexUrlByParent = static::resolveIndexUrlByParent($record);
         $indexUrl = match (true) {
-            !empty($indexUrlByParent) => $indexUrlByParent,
+            ! empty($indexUrlByParent) => $indexUrlByParent,
             $resource::hasPage('index') => $resource::getUrl('index'),
             default => null,
         };

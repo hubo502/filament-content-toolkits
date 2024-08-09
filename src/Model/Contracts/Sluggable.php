@@ -2,7 +2,4 @@
 
 namespace Darko\FilamentContentToolkits\Model\Contracts;
 
-interface Sluggable
-{
-
-}
+interface Sluggable {}

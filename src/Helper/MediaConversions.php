@@ -11,10 +11,7 @@ class MediaConversions
         static::conversion($model, 'cover');
     }
 
-    public static function thumbnail()
-    {
-
-    }
+    public static function thumbnail() {}
 
     protected static function conversion(HasMedia $model, string $collection): void
     {

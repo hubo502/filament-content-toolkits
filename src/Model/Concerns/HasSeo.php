@@ -7,7 +7,6 @@ use Darko\FilamentContentToolkits\Facades\Site;
 
 trait HasSeo
 {
-
     public function setSeo(): void
     {
         SEOMeta::setTitle($this->resolveSeoTitle());
@@ -23,7 +22,7 @@ trait HasSeo
 
         $titleColumn = $this?->titleColumn ?? 'title';
 
-        $title = !empty($this->seo_title) ? $this->seo_title : $this->$titleColumn;
+        $title = ! empty($this->seo_title) ? $this->seo_title : $this->$titleColumn;
 
         $brand = Site::abbv();
 

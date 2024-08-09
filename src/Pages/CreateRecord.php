@@ -9,6 +9,7 @@ use Filament\Resources\Pages\CreateRecord\Concerns\Translatable;
 class CreateRecord extends BaseCreateRecord
 {
     use Translatable;
+
     protected static string $resource;
 
     protected function getActions(): array

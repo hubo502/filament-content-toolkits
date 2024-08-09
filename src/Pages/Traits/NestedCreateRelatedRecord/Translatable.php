@@ -13,6 +13,7 @@ trait Translatable
     use HasActiveLocaleSwitcher;
 
     protected $child_record = null;
+
     protected ?string $oldActiveLocale = null;
 
     public function mountTranslatable(): void
@@ -43,7 +44,7 @@ trait Translatable
         $this->otherLocaleData[$this->oldActiveLocale] = Arr::only($this->data, $translatableAttributes);
 
         $this->data = [
-             ...Arr::except($this->data, $translatableAttributes),
+            ...Arr::except($this->data, $translatableAttributes),
             ...$this->otherLocaleData[$this->activeLocale] ?? [],
         ];
 
@@ -103,7 +104,7 @@ trait Translatable
 
         foreach ($this->otherLocaleData as $locale => $localeData) {
             $this->data = [
-                 ...$this->data,
+                ...$this->data,
                 ...$localeData,
             ];
 
